@@ -227,6 +227,14 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
+## Team Members
+
+- **Project Manager:** Muhammad Fiaz
+- **Full Stack Developer:** Abdul Rehman
+- **AI / ML Engineer:** Muhammad Umar Saad
+- **Pitch / Demo Lead:** Ume Rubab
+
+
 <div align="center">
 
 **Built with ❤️ for Research Discovery**
