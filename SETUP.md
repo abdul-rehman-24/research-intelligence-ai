@@ -7,7 +7,7 @@
 ## 📋 Prerequisites
 
 - **Python 3.10+** - [Download](https://python.org/downloads)
-- **Gemini API Key** - [Get one free](https://makersuite.google.com/app/apikey)
+- **xAI API Key** - [Get one free](https://console.x.ai/)
 - **Git** - [Download](https://git-scm.com/downloads)
 
 ---
@@ -54,7 +54,7 @@ pip install -r requirements.txt
 cp .env.example .env
 
 # 6. Add your API key to .env
-# Edit .env and add: GEMINI_API_KEY=your_key_here
+# Edit .env and add: XAI_API_KEY=your_key_here
 ```
 
 ---
@@ -62,13 +62,13 @@ cp .env.example .env
 ## 🔑 Configure API Key
 
 1. Open `.env` file in any text editor
-2. Add your Gemini API key:
+2. Add your xAI (Grok) API key:
 
 ```env
-GEMINI_API_KEY=AIzaSy...your_key_here
+XAI_API_KEY=xai-...your_key_here
 ```
 
-**Get your key:** https://makersuite.google.com/app/apikey
+**Get your key:** https://console.x.ai/
 
 ---
 
@@ -112,7 +112,7 @@ project/
 
 ## 🔧 Troubleshooting
 
-### "GEMINI_API_KEY not set"
+### "XAI_API_KEY not set"
 - Create `.env` file from `.env.example`
 - Add your API key to `.env`
 
@@ -143,10 +143,10 @@ streamlit run app.py --server.port 8502
    - Example: "transformer architectures for medical imaging"
 
 2. **Configure options** in sidebar:
-   - Max papers per source
+   - Max papers to fetch
    - Enable/disable analysis features
 
-3. **Click "⚡ LAUNCH RESEARCH"**
+3. **Click "🔬 Search Papers"**
 
 4. **Explore results** in tabs:
    - 📄 Papers - Found papers

@@ -1,4 +1,4 @@
-# 📖 AI Research Intelligence System - Complete Documentation
+# 📖 AI Research Intelligence System - Technical Documentation
 
 > Comprehensive technical documentation for the Multi-Agent Research System
 
@@ -9,22 +9,23 @@
 1. [Project Overview](#project-overview)
 2. [Architecture](#architecture)
 3. [File Structure](#file-structure)
-4. [Core Classes](#core-classes)
+4. [Core Components](#core-components)
 5. [Agent System](#agent-system)
-6. [Data Sources](#data-sources)
-7. [API Reference](#api-reference)
-8. [UI Components](#ui-components)
-9. [Configuration](#configuration)
-10. [Workflow](#workflow)
+6. [Data Source](#data-source)
+7. [UI Components](#ui-components)
+8. [Configuration](#configuration)
+9. [Workflow](#workflow)
+10. [Error Handling](#error-handling)
 
 ---
 
 ## 🎯 Project Overview
 
 ### Purpose
+
 This system automates academic research discovery by:
-- Fetching papers from 6 academic sources simultaneously
-- Using AI (Gemini 2.5 Flash) for deep analysis
+- Fetching papers from arXiv academic database
+- Using AI (Grok) for deep analysis
 - Synthesizing literature reviews automatically
 - Identifying research gaps and future trends
 
@@ -32,11 +33,12 @@ This system automates academic research discovery by:
 
 | Component | Technology |
 |-----------|------------|
-| **AI Model** | Gemini 2.5 Flash |
+| **AI Model** | Grok 2 |
 | **Backend** | Python 3.10+ |
 | **Frontend** | Streamlit |
-| **API Client** | google-genai SDK |
-| **Data Sources** | arXiv, Semantic Scholar, PubMed, OpenAlex, CrossRef, CORE |
+| **API Client** | OpenAI SDK (xAI compatible) |
+| **Data Source** | arXiv API |
+| **Fonts** | Poppins (headers), Inter (body) |
 
 ---
 
@@ -61,24 +63,25 @@ This system automates academic research discovery by:
 │   │     (Tracks progress, insights, corrections)            │   │
 │   └─────────────────────────────────────────────────────────┘   │
 │                              │                                  │
-│   ┌──────────┬───────────┬───────────┬───────────┬──────────┐   │
-│   │ Analyzer │ Synthesis │  Critic   │   Trend   │ Thinker  │   │
-│   │  Agent   │   Agent   │   Agent   │   Agent   │  (Base)  │   │
-│   └──────────┴───────────┴───────────┴───────────┴──────────┘   │
+│   ┌──────────┬───────────┬───────────┬───────────────────┐      │
+│   │ Analyzer │ Synthesis │  Critic   │ TrendPrediction   │      │
+│   │  Agent   │   Agent   │   Agent   │      Agent        │      │
+│   └──────────┴───────────┴───────────┴───────────────────┘      │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                     GEMINI 2.5 FLASH API                        │
-│              Extended Thinking • 1M Token Context               │
+│                        GROK AI API                          │
+│                    Deep Analysis Engine                         │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                       DATA SOURCES                              │
-│  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────┐  │
-│  │ arXiv  │ │Semantic│ │ PubMed │ │OpenAlex│ │CrossRef│ │CORE│  │
-│  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘ └────┘  │
+│                        DATA SOURCE                              │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                       arXiv API                            │ │
+│  │              Open Access Research Papers                   │ │
+│  └────────────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -88,25 +91,29 @@ This system automates academic research discovery by:
 
 ```
 project/
-├── app.py                         # Streamlit UI application
-├── gemini3_research_system.py     # Core research orchestrator
-├── gemini3_enhanced_features.py   # Extended thinking features
+├── app.py                         # Streamlit UI application (~1840 lines)
+├── gemini3_research_system.py     # Core research orchestrator (~740 lines)
 ├── requirements.txt               # Python dependencies
 ├── README.md                      # Project overview
 ├── DOCUMENTATION.md               # This file
+├── SETUP.md                       # Setup instructions
+├── LICENSE                        # MIT License
 ├── .env                           # API keys (create this)
-└── .venv/                         # Virtual environment
+├── run.bat                        # Windows launcher
+├── run.sh                         # Linux/Mac launcher
+├── setup.bat                      # Windows setup
+└── setup.sh                       # Linux/Mac setup
 ```
 
 ---
 
-## 🔧 Core Classes
+## 🔧 Core Components
 
 ### 1. ResearchSession
 
-**File:** `gemini3_research_system.py` (Line 62)
+**File:** `gemini3_research_system.py`
 
-**Purpose:** Tracks research sessions spanning hours/days. Maintains continuity and self-corrects across multi-step analysis.
+**Purpose:** Tracks research sessions with continuity and self-correction capabilities.
 
 ```python
 class ResearchSession:
@@ -129,18 +136,18 @@ class ResearchSession:
 
 | Method | Parameters | Returns | Description |
 |--------|------------|---------|-------------|
-| `log_agent_action()` | agent_name, action, result | None | Tracks all agent actions for continuity |
-| `add_insight()` | insight, confidence | None | Track insights with confidence scores |
-| `add_correction()` | original, corrected, reason | None | Self-correction tracking for Thinking Mode |
-| `get_session_context()` | None | str | Generate context for maintaining continuity |
+| `log_agent_action()` | agent_name, action, result | None | Tracks all agent actions |
+| `add_insight()` | insight, confidence | None | Track insights with confidence |
+| `add_correction()` | original, corrected, reason | None | Self-correction tracking |
+| `get_session_context()` | None | str | Generate context for continuity |
 
 ---
 
 ### 2. ThinkingAgent (Base Class)
 
-**File:** `gemini3_research_system.py` (Line 126)
+**File:** `gemini3_research_system.py`
 
-**Purpose:** Base agent with extended thinking capabilities using Gemini's thinking mode for deep reasoning.
+**Purpose:** Base agent class with AI analysis capabilities using Grok.
 
 ```python
 class ThinkingAgent:
@@ -151,16 +158,16 @@ class ThinkingAgent:
 
 | Method | Parameters | Returns | Description |
 |--------|------------|---------|-------------|
-| `think_and_analyze()` | content, instruction | Dict | Uses Gemini's extended thinking mode for analysis |
+| `think_and_analyze()` | content, instruction | Dict | Uses Grok for analysis |
 | `_parse_response()` | text | Dict | Parses JSON response from AI |
 
 ---
 
 ### 3. ResearchOrchestrator
 
-**File:** `gemini3_research_system.py` (Line 440)
+**File:** `gemini3_research_system.py`
 
-**Purpose:** Main orchestrator coordinating all agents. This is the central controller that manages the entire research workflow.
+**Purpose:** Main orchestrator coordinating all agents and API calls.
 
 ```python
 class ResearchOrchestrator:
@@ -182,15 +189,8 @@ class ResearchOrchestrator:
 
 | Method | Parameters | Returns | Description |
 |--------|------------|---------|-------------|
-| `fetch_papers_parallel()` | max_per_source (int) | List[Dict] | Parallel fetching from 6 sources |
-| `run_marathon_analysis()` | None | Dict | Full marathon analysis pipeline |
-| `_fetch_arxiv()` | query, max_results | List[Dict] | Fetch papers from arXiv |
-| `_fetch_semantic_scholar()` | query, max_results | List[Dict] | Fetch from Semantic Scholar |
-| `_fetch_pubmed()` | query, max_results | List[Dict] | Fetch from PubMed |
-| `_fetch_openalex()` | query, max_results | List[Dict] | Fetch from OpenAlex |
-| `_fetch_crossref()` | query, max_results | List[Dict] | Fetch from CrossRef |
-| `_fetch_core()` | query, max_results | List[Dict] | Fetch from CORE |
-| `_deduplicate_papers()` | papers | List[Dict] | Remove duplicate papers |
+| `fetch_papers()` | max_results | List[Dict] | Fetch papers from arXiv |
+| `run_marathon_analysis()` | None | Dict | Full analysis pipeline |
 
 ---
 
@@ -198,7 +198,7 @@ class ResearchOrchestrator:
 
 ### Agent Overview
 
-The system uses 5 specialized agents, each inheriting from `ThinkingAgent`:
+The system uses 4 specialized agents:
 
 ```
                     ThinkingAgent (Base)
@@ -214,206 +214,117 @@ The system uses 5 specialized agents, each inheriting from `ThinkingAgent`:
 
 ---
 
-### 4. DeepAnalyzerAgent
-
-**File:** `gemini3_research_system.py` (Line 208)
+### DeepAnalyzerAgent
 
 **Purpose:** Analyzes individual papers deeply using AI.
 
-```python
-class DeepAnalyzerAgent(ThinkingAgent):
-    def __init__(self, session: ResearchSession)
-```
-
 #### Method: `analyze_paper_deeply(paper: Dict) -> Dict`
 
-**Input:** A paper dictionary with title, summary, authors, etc.
-
-**Output:** Analysis dictionary containing:
+**Output:**
 ```python
 {
-    "main_idea": str,           # Main idea of the paper
-    "methodology": str,         # Research methodology used
-    "contribution": list,       # List of key contributions
-    "limitations": list,        # Identified limitations
-    "relevance_score": float,   # 0-1 relevance to query
-    "confidence_in_analysis": float  # Confidence score
+    "main_idea": str,              # Core concept of the paper
+    "methodology": str,            # Research methodology used
+    "contribution": list,          # Key contributions
+    "limitations": list,           # Identified limitations
+    "relevance_score": float,      # 0-1 relevance to query
+    "confidence_in_analysis": float # Confidence score
 }
 ```
 
 ---
 
-### 5. SynthesisAgent
+### SynthesisAgent
 
-**File:** `gemini3_research_system.py` (Line 270)
+**Purpose:** Generates comprehensive literature reviews.
 
-**Purpose:** Generates comprehensive literature reviews by synthesizing findings across all papers.
+#### Method: `synthesize_literature(papers: List[Dict]) -> Dict`
 
+**Output:**
 ```python
-class SynthesisAgent(ThinkingAgent):
-    def __init__(self, session: ResearchSession)
+{
+    "deep_synthesis_analysis": {
+        "title": str,
+        "introduction": str,
+        "major_research_themes": list,
+        "evolution_of_ideas": str,
+        "contradictions": str,
+        "research_gaps": list,
+        "future_directions": list,
+        "conclusion": str
+    }
+}
 ```
-
-#### Method: `synthesize_literature(papers: List[Dict]) -> str`
-
-**Input:** List of paper dictionaries
-
-**Output:** Markdown-formatted literature review string including:
-- Introduction and scope
-- Thematic analysis
-- Methodology comparison
-- Key findings synthesis
-- Conclusion
 
 ---
 
-### 6. CriticAgent
+### CriticAgent
 
-**File:** `gemini3_research_system.py` (Line 331)
-
-**Purpose:** Identifies research gaps and future opportunities.
-
-```python
-class CriticAgent(ThinkingAgent):
-    def __init__(self, session: ResearchSession)
-```
+**Purpose:** Identifies research gaps and opportunities.
 
 #### Method: `identify_gaps_and_opportunities(papers: List[Dict]) -> Dict`
 
-**Input:** List of paper dictionaries
-
-**Output:** Dictionary containing:
+**Output:**
 ```python
 {
-    "major_gaps": [
-        {
-            "gap": str,
-            "why_important": str
-        }
-    ],
-    "future_directions": [
-        {
-            "direction": str
-        }
-    ],
-    "unexplored_methods": list
+    "critical_analysis": {
+        "major_gaps": [
+            {"gap": str, "why_important": str}
+        ],
+        "future_directions": [
+            {"direction": str}
+        ],
+        "unexplored_methods": list
+    }
 }
 ```
 
 ---
 
-### 7. TrendPredictionAgent
+### TrendPredictionAgent
 
-**File:** `gemini3_research_system.py` (Line 385)
+**Purpose:** Predicts emerging research trends.
 
-**Purpose:** Predicts emerging research trends and provides forecasts.
+#### Method: `predict_trends(papers: List[Dict]) -> Dict`
 
-```python
-class TrendPredictionAgent(ThinkingAgent):
-    def __init__(self, session: ResearchSession)
-```
-
-#### Methods
-
-| Method | Parameters | Returns | Description |
-|--------|------------|---------|-------------|
-| `predict_trends()` | papers | Dict | Predict future research trends |
-| `_extract_year()` | date_string | int or None | Extract year from date string |
-
-**Output Structure:**
+**Output:**
 ```python
 {
-    "growing_trends": [
-        {
-            "trend": str,
-            "growth_rate": str
-        }
-    ],
-    "declining_trends": list,
-    "predictions_2026": list,
-    "emerging_topics": list
+    "trend_analysis": {
+        "growing_trends": [{"trend": str, "growth_rate": str}],
+        "declining_trends": list,
+        "predictions_2026": list,
+        "emerging_topics": list
+    }
 }
 ```
 
 ---
 
-## 📡 Data Sources
+## 📡 Data Source
 
-### Source Configuration
+### arXiv API
 
-Each source has a dedicated fetch method with:
-- Error handling
-- Rate limiting
-- Relevance scoring
-- Standardized output format
+- **API Endpoint:** `http://export.arxiv.org/api/query`
+- **Timeout:** 30 seconds
+- **Retry Attempts:** 2
 
-### Standardized Paper Format
+### Paper Format
 
-All sources return papers in this format:
+All papers are returned in this standardized format:
 
 ```python
 {
     "title": str,           # Paper title
-    "summary": str,         # Abstract/summary
+    "summary": str,         # Abstract
     "authors": List[str],   # List of author names
     "published": str,       # Publication date (YYYY-MM-DD)
-    "link": str,           # URL to paper
-    "pdf_link": str,       # Direct PDF URL (if available)
-    "source": str,         # Source name (e.g., "arXiv")
-    "citation_count": int, # Number of citations (if available)
-    "relevance_score": float  # 0-1 relevance to query
+    "link": str,            # URL to paper
+    "pdf_link": str,        # Direct PDF URL
+    "source": str,          # "arXiv"
+    "relevance_score": float # 0-1 relevance to query
 }
 ```
-
-### Source Details
-
-#### 1. arXiv
-- **API:** `http://export.arxiv.org/api/query`
-- **Method:** `_fetch_arxiv()`
-- **Features:** 
-  - Searches title + abstract
-  - Uses AND for multi-word queries
-  - Returns PDF links directly
-
-#### 2. Semantic Scholar
-- **API:** `https://api.semanticscholar.org/graph/v1/paper/search`
-- **Method:** `_fetch_semantic_scholar()`
-- **Features:**
-  - Includes citation counts
-  - Open access PDF links
-  - Large database (200M+ papers)
-
-#### 3. PubMed
-- **API:** `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/`
-- **Method:** `_fetch_pubmed()`
-- **Features:**
-  - Two-step: search then fetch details
-  - Biomedical focus
-  - Includes DOI links
-
-#### 4. OpenAlex
-- **API:** `https://api.openalex.org/works`
-- **Method:** `_fetch_openalex()`
-- **Features:**
-  - 250M+ works
-  - Fully open access
-  - Citation counts included
-
-#### 5. CrossRef
-- **API:** `https://api.crossref.org/works`
-- **Method:** `_fetch_crossref()`
-- **Features:**
-  - 140M+ DOI registrations
-  - Comprehensive metadata
-  - Publisher information
-
-#### 6. CORE
-- **API:** `https://api.core.ac.uk/v3/search/outputs`
-- **Method:** `_fetch_core()`
-- **Features:**
-  - 200M+ open access papers
-  - Full text access
-  - Institutional repositories
 
 ---
 
@@ -421,92 +332,44 @@ All sources return papers in this format:
 
 ### Main Functions
 
-#### `collect_papers(query, sources, limit)`
-**Line:** 549
-
-Collects papers from the orchestrator.
-
-```python
-def collect_papers(query, sources, limit):
-    """
-    Parameters:
-        query (str): Search query
-        sources (list): Selected data sources
-        limit (int): Max papers per source
-    
-    Returns:
-        tuple: (papers_list, orchestrator_instance)
-    """
-```
-
-#### `analyze_papers(papers, orchestrator, deep=False)`
-**Line:** 567
-
-Analyzes papers using the DeepAnalyzerAgent.
-
-```python
-def analyze_papers(papers, orchestrator, deep=False):
-    """
-    Parameters:
-        papers (list): Papers to analyze
-        orchestrator: ResearchOrchestrator instance
-        deep (bool): Whether to do deep analysis
-    
-    Returns:
-        list: Analysis results for each paper
-    """
-```
-
-#### `synthesize_literature(papers, orchestrator)`
-**Line:** 583
-
-Generates literature review.
-
-#### `find_research_gaps(papers, orchestrator)`
-**Line:** 586
-
-Identifies research gaps.
-
-#### `predict_trends(papers, orchestrator)`
-**Line:** 589
-
-Predicts future trends.
-
-#### `escape_html(text)`
-**Line:** 592
-
-Escapes HTML special characters for safe rendering.
-
----
+| Function | Purpose |
+|----------|---------|
+| `collect_papers()` | Fetches papers from arXiv |
+| `analyze_papers()` | Deep analysis using AI |
+| `synthesize_literature()` | Generates literature review |
+| `find_research_gaps()` | Identifies research gaps |
+| `predict_trends()` | Predicts future trends |
+| `escape_html()` | Sanitizes HTML content |
 
 ### UI Tabs
 
-| Tab | Purpose | Agent Used |
-|-----|---------|------------|
-| 📄 Papers | Display fetched papers | Collector |
-| 🧠 Analysis | Deep paper analysis | DeepAnalyzerAgent |
-| 📚 Literature | Synthesized literature review | SynthesisAgent |
-| 🔍 Gaps | Research gaps | CriticAgent |
-| 📈 Trends | Future predictions | TrendPredictionAgent |
-| 🤖 Agents | Agent status monitoring | All |
-
----
+| Tab | Icon | Purpose | Agent Used |
+|-----|------|---------|------------|
+| Papers | 📄 | Display fetched papers | - |
+| Analysis | 🧠 | Deep paper analysis | DeepAnalyzerAgent |
+| Literature | 📚 | Synthesized review | SynthesisAgent |
+| Gaps | 🔍 | Research gaps | CriticAgent |
+| Trends | 📈 | Future predictions | TrendPredictionAgent |
+| Agents | 🤖 | Status monitoring | All |
 
 ### Session State Variables
-
-Streamlit session state variables used:
 
 ```python
 st.session_state.papers        # List of fetched papers
 st.session_state.analyses      # Deep analysis results
-st.session_state.lit_review    # Literature review text
+st.session_state.literature    # Literature review
 st.session_state.gaps          # Research gaps
 st.session_state.trends        # Trend predictions
 st.session_state.error         # Error messages
 st.session_state.search_started # Search in progress flag
-st.session_state.step          # Current workflow step
 st.session_state.agent_status  # Status of each agent
 ```
+
+### Input Validation
+
+- **Minimum Query Length:** 3 characters
+- **Error Message:** Displayed if validation fails
+- **Tooltips:** Provided on all interactive elements
 
 ---
 
@@ -517,14 +380,14 @@ st.session_state.agent_status  # Status of each agent
 Create a `.env` file:
 
 ```env
-GEMINI_API_KEY=your_api_key_here
+XAI_API_KEY=your_api_key_here
 ```
 
 ### Sidebar Options
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| Max Papers per Source | 5 | Number of papers to fetch from each source |
+| Max Papers to Fetch | 5 | Number of papers to retrieve |
 | Enable Deep Analysis | True | Use AI for paper analysis |
 | Enable Literature Review | True | Generate synthesized review |
 | Enable Gap Analysis | True | Identify research gaps |
@@ -538,24 +401,19 @@ GEMINI_API_KEY=your_api_key_here
 
 ```
 1. USER INPUT
-   └── Enter research query
+   └── Enter research query (min 3 characters)
    
-2. PAPER COLLECTION (Parallel)
-   ├── arXiv
-   ├── Semantic Scholar
-   ├── PubMed
-   ├── OpenAlex
-   ├── CrossRef
-   └── CORE
+2. VALIDATION
+   └── Check query length and format
 
-3. DEDUPLICATION
-   └── Remove duplicate papers by title
+3. PAPER COLLECTION
+   └── Fetch from arXiv API (with timeout/retry)
    
-4. RELEVANCE SORTING
-   └── Sort by relevance score
+4. RESULTS CHECK
+   └── Display empty state if no papers found
 
 5. DEEP ANALYSIS (Optional)
-   └── Analyze each paper with AI
+   └── Analyze each paper with Grok AI
 
 6. SYNTHESIS (Optional)
    └── Generate literature review
@@ -567,66 +425,31 @@ GEMINI_API_KEY=your_api_key_here
    └── Predict future trends
 
 9. DISPLAY RESULTS
-   └── Show in UI tabs
+   └── Show in UI tabs with proper formatting
 ```
-
-### Marathon Analysis Phases
-
-When running `run_marathon_analysis()`:
-
-| Phase | Description | Duration |
-|-------|-------------|----------|
-| Phase 1 | Multi-Source Data Collection | ~30 seconds |
-| Phase 2 | Deep Analysis with Extended Thinking | ~2-5 minutes |
-| Phase 3 | Literature Synthesis | ~1-2 minutes |
-| Phase 4 | Critical Gap Analysis | ~1 minute |
-| Phase 5 | Trend Prediction | ~1 minute |
-| Phase 6 | Session Summary | ~10 seconds |
-
----
-
-## 🔌 API Reference
-
-### Gemini API Usage
-
-```python
-from google import genai
-
-# Initialize client
-genai_client = genai.Client(api_key=GEMINI_API_KEY)
-
-# Generate content
-response = genai_client.models.generate_content(
-    model="models/gemini-2.5-flash",
-    contents=prompt
-)
-
-# Get response text
-text = response.text
-```
-
-### Rate Limiting
-
-- Each API call includes a 0.5 second delay
-- Timeout set to 30 seconds for external APIs
-- Error handling with graceful fallbacks
 
 ---
 
 ## 🐛 Error Handling
 
-### Common Errors
+### Input Validation
 
-| Error | Cause | Solution |
-|-------|-------|----------|
-| `GEMINI_API_KEY not set` | Missing .env file | Create .env with API key |
-| `404 NOT_FOUND` | Invalid model name | Use `gemini-2.5-flash` |
-| `Timeout` | Slow API response | Increase timeout or retry |
-| `JSON Parse Error` | Invalid AI response | Falls back to empty dict |
+| Validation | Error Message |
+|------------|---------------|
+| Empty query | "Please enter a search query" |
+| Query < 3 chars | "Please enter at least 3 characters" |
+
+### API Error Handling
+
+| Error | Handling |
+|-------|----------|
+| API Timeout | Retry up to 2 times |
+| Connection Error | Display friendly error message |
+| No Results | Show empty state with guidance |
+| JSON Parse Error | Fallback to raw text display |
 
 ### Error Recovery
 
-The system includes:
 - Try-catch blocks around all API calls
 - Fallback values for failed operations
 - User-friendly error messages in UI
@@ -634,12 +457,19 @@ The system includes:
 
 ---
 
-## 📊 Performance Tips
+## 📊 Performance
 
-1. **Reduce API calls:** Lower max papers per source
-2. **Skip optional features:** Disable deep analysis for faster results
-3. **Use parallel fetching:** Already implemented for data collection
-4. **Cache results:** Session state maintains results during session
+### Timeouts
+
+| Operation | Timeout |
+|-----------|---------|
+| arXiv API | 30 seconds |
+| Grok API | Default (no explicit timeout) |
+
+### Retry Logic
+
+- **arXiv API:** 2 retry attempts on failure
+- **Delay between retries:** Immediate
 
 ---
 
@@ -647,35 +477,35 @@ The system includes:
 
 - API keys stored in `.env` (not in code)
 - `.env` file should be in `.gitignore`
+- HTML escaping prevents XSS attacks
 - No credentials logged or displayed
-- HTML escaping prevents XSS
 
 ---
 
-## 📝 Example Usage
+## 🎨 Styling
 
-```python
-from gemini3_research_system import ResearchOrchestrator
+### Theme Variables
 
-# Initialize
-orchestrator = ResearchOrchestrator("transformer architectures")
-
-# Fetch papers (async)
-import asyncio
-papers = asyncio.run(orchestrator.fetch_papers_parallel(max_per_source=10))
-
-# Analyze a paper
-analysis = orchestrator.analyzer.analyze_paper_deeply(papers[0])
-
-# Get literature review
-review = orchestrator.synthesizer.synthesize_literature(papers)
-
-# Find gaps
-gaps = orchestrator.critic.identify_gaps_and_opportunities(papers)
-
-# Predict trends
-trends = orchestrator.trends.predict_trends(papers)
+```css
+--primary-blue: #3b82f6
+--primary-purple: #8b5cf6
+--accent-green: #10b981
+--text-dark: #1e293b
+--text-light: #64748b
+--bg-light: #f8fafc
+--border-color: #e2e8f0
 ```
+
+### Fonts
+
+- **Headers:** Poppins (700 weight)
+- **Body:** Inter (400, 500, 600 weights)
+
+### Component Styling
+
+- **Border radius:** 8px (inputs), 12-16px (cards)
+- **Shadows:** Subtle box-shadows for depth
+- **Transitions:** 0.3s ease for hover effects
 
 ---
 
@@ -683,6 +513,6 @@ trends = orchestrator.trends.predict_trends(papers)
 
 **📖 Documentation Complete**
 
-*For questions or issues, please refer to the README.md*
+*For setup instructions, see SETUP.md*
 
 </div>

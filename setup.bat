@@ -57,10 +57,10 @@ if not exist ".env" (
     echo ========================================
     echo.
     echo 1. Open .env file
-    echo 2. Add your Gemini API key:
-    echo    GEMINI_API_KEY=your_key_here
+    echo 2. Add your xAI (Grok) API key:
+    echo    XAI_API_KEY=your_key_here
     echo.
-    echo Get your key at: https://makersuite.google.com/app/apikey
+    echo Get your key at: https://console.x.ai/
     echo.
 ) else (
     echo .env file found.

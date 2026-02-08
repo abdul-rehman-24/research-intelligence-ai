@@ -4,7 +4,7 @@
 # ============================================
 
 # --- Core AI ---
-google-genai>=1.0.0          # Gemini API client (new SDK)
+openai>=1.0.0                 # OpenAI SDK (for Grok API)
 
 # --- Web Scraping & APIs ---
 requests>=2.31.0              # HTTP requests

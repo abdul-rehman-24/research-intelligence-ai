@@ -1,24 +1,24 @@
 # 🧠 AI Research Intelligence System
 
-> **🏆 Gemini 3 Hackathon Entry** - Multi-Agent Academic Discovery Platform
+> **Multi-Agent Academic Discovery Platform** powered by OpenRouter AI
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
-![Gemini](https://img.shields.io/badge/Gemini%202.5-Flash-orange?logo=google)
+![OpenRouter](https://img.shields.io/badge/OpenRouter-API-green?logo=openai)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red?logo=streamlit)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ## 🔬 Overview
 
-A cutting-edge **Multi-Agent AI Research System** that leverages **Gemini 2.5 Flash** capabilities to autonomously discover, analyze, and synthesize academic research across 6 major sources.
+A sophisticated **Multi-Agent AI Research System** that leverages **OpenRouter AI** (with Groq/DeepSeek models) to autonomously discover, analyze, and synthesize academic research from arXiv.
 
 ### ✨ Key Features
 
 | Feature | Description |
 |---------|-------------|
-| 🤖 **5 Specialized Agents** | Collector, Analyzer, Synthesis, Critic, and Trend agents working in orchestration |
-| 📚 **6 Academic Sources** | arXiv, Semantic Scholar, PubMed, OpenAlex, CrossRef, CORE |
-| 🧠 **Extended Thinking** | Deep analysis using Gemini 3's native reasoning capabilities |
-| 🎨 **Cyberpunk UI** | Modern neon-themed interface built with Streamlit |
+| 🤖 **4 Specialized Agents** | DeepAnalyzer, Synthesizer, Critic, and TrendPrediction agents |
+| 📚 **arXiv Integration** | Access to millions of research papers |
+| 🧠 **Deep Analysis** | AI-powered research analysis using OpenRouter API |
+| 🎨 **Modern UI** | Clean, professional interface with responsive design |
 | 📊 **Smart Relevance Scoring** | AI-powered paper filtering and ranking |
 | 🔄 **Real-time Progress** | Live agent status and search progress tracking |
 
@@ -29,14 +29,15 @@ A cutting-edge **Multi-Agent AI Research System** that leverages **Gemini 2.5 Fl
 ### Prerequisites
 
 - Python 3.10+
-- Gemini API Key ([Get one here](https://makersuite.google.com/app/apikey))
+- OpenRouter API Key ([Get one here](https://openrouter.ai/keys))
+- Or Groq API Key ([Get one here](https://console.groq.com/))
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ai-research-intelligence.git
-cd ai-research-intelligence
+git clone https://github.com/yourusername/multi-agent-research-intelligence-system.git
+cd multi-agent-research-intelligence-system
 
 # Create virtual environment
 python -m venv .venv
@@ -56,7 +57,11 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 
 ```env
-GEMINI_API_KEY=your_api_key_here
+# Use OpenRouter (recommended)
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+# Or use Groq (alternative)
+# GROQ_API_KEY=your_groq_api_key_here
 ```
 
 ### Run the Application
@@ -74,7 +79,7 @@ Open your browser at `http://localhost:8501`
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    STREAMLIT UI (app.py)                    │
-│              Cyberpunk Neon Theme • Real-time UI            │
+│              Modern Theme • Real-time Updates               │
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -82,43 +87,30 @@ Open your browser at `http://localhost:8501`
 │              RESEARCH ORCHESTRATOR                          │
 │         (gemini3_research_system.py)                        │
 ├─────────────────────────────────────────────────────────────┤
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐        │
-│  │ Collector│ │ Analyzer │ │ Synthesis│ │  Critic  │        │
-│  │  Agent   │ │  Agent   │ │  Agent   │ │  Agent   │        │
-│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘        │
-│       │            │            │            │               │
-│  ┌────┴────────────┴────────────┴────────────┴────┐         │
-│  │            GEMINI 2.5 FLASH API                │         │
-│  │         Extended Thinking • 1M Context          │         │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐         │
+│  │ DeepAnalyzer │ │  Synthesizer │ │    Critic    │         │
+│  │    Agent     │ │    Agent     │ │    Agent     │         │
+│  └──────┬───────┘ └──────┬───────┘ └──────┬───────┘         │
+│         │                │                │                  │
+│  ┌──────┴────────────────┴────────────────┴───────┐         │
+│  │         TrendPrediction Agent                  │         │
+│  └────────────────────────────────────────────────┘         │
+│                          │                                   │
+│  ┌───────────────────────┴────────────────────────┐         │
+│  │              OPENROUTER AI API                 │         │
+│  │              Deep Analysis Engine               │         │
 │  └─────────────────────────────────────────────────┘         │
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    DATA SOURCES                             │
-│  ┌────────┐ ┌──────────┐ ┌────────┐ ┌─────────┐ ┌────────┐  │
-│  │ arXiv  │ │ Semantic │ │ PubMed │ │ OpenAlex│ │CrossRef│  │
-│  │        │ │ Scholar  │ │        │ │         │ │        │  │
-│  └────────┘ └──────────┘ └────────┘ └─────────┘ └────────┘  │
-│                          ┌────────┐                          │
-│                          │  CORE  │                          │
-│                          └────────┘                          │
+│                      DATA SOURCE                            │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │                      arXiv                           │   │
+│  │          Open Access Academic Papers                 │   │
+│  └──────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
 ```
-
----
-
-## 🎯 Hackathon Alignment
-
-This project demonstrates key Gemini 3 capabilities:
-
-| Hackathon Criteria | Implementation |
-|-------------------|----------------|
-| **Marathon Agent** | Autonomous multi-hour research sessions with session tracking |
-| **Thought Signatures** | Self-correcting analysis across multi-step workflows |
-| **Orchestrator Pattern** | 5 specialized agents coordinated by central orchestrator |
-| **Beyond RAG** | Native reasoning over 100+ papers using 1M token context |
-| **Robust System** | Production-ready with comprehensive error recovery |
 
 ---
 
@@ -126,55 +118,46 @@ This project demonstrates key Gemini 3 capabilities:
 
 ```
 project/
-├── app.py                      # Streamlit UI (Cyberpunk theme)
+├── app.py                      # Streamlit UI application
 ├── gemini3_research_system.py  # Multi-agent orchestrator
 ├── requirements.txt            # Python dependencies
+├── README.md                   # Project overview
+├── DOCUMENTATION.md            # Technical documentation
+├── SETUP.md                    # Setup guide
 ├── .env                        # API keys (create this)
-├── START_HERE_GEMINI3.md      # Hackathon quick start
-└── GEMINI3_HACKATHON_GUIDE.md # Detailed guide
+├── run.bat                     # Windows launcher
+├── run.sh                      # Linux/Mac launcher
+├── setup.bat                   # Windows setup script
+└── setup.sh                    # Linux/Mac setup script
 ```
 
 ---
 
 ## 🤖 Agent Descriptions
 
-### 1. 🔍 Collector Agent
-Parallel fetching from 6 academic APIs with intelligent query optimization and relevance scoring.
+### 1. 🧠 DeepAnalyzer Agent
+Analyzes individual papers deeply using OpenRouter AI for methodology evaluation, contribution assessment, and limitation identification.
 
-### 2. 🧠 Analyzer Agent
-Deep analysis using Gemini 3's Extended Thinking for methodology evaluation, contribution assessment, and limitation identification.
-
-### 3. 📚 Synthesis Agent
+### 2. 📚 Synthesizer Agent
 Generates comprehensive literature reviews by synthesizing findings across all collected papers.
 
-### 4. 🔍 Critic Agent
+### 3. 🔍 Critic Agent
 Identifies research gaps, unexplored areas, and potential future research directions.
 
-### 5. 📈 Trend Agent
-Predicts emerging research trends and provides forecasts for 2026 and beyond.
+### 4. 📈 TrendPrediction Agent
+Predicts emerging research trends and provides forecasts based on analyzed papers.
 
 ---
 
 ## 🎨 UI Features
 
-- **Cyberpunk Neon Theme** - Eye-catching dark theme with neon accents
+- **Modern Professional Theme** - Clean design with blue/purple gradients
+- **Responsive Layout** - Works on various screen sizes
 - **Real-time Agent Status** - Live tracking of agent activity
-- **Paper Cards** - Beautiful cards with relevance scores and source badges
+- **Paper Cards** - Beautiful cards with relevance scores and metadata
 - **Tab Navigation** - Papers, Analysis, Literature, Gaps, Trends, Agents
-- **Export Options** - Download research results in multiple formats
-
----
-
-## 📊 Data Sources
-
-| Source | Type | Coverage |
-|--------|------|----------|
-| **arXiv** | Preprints | Physics, Math, CS, Biology |
-| **Semantic Scholar** | Academic | 200M+ papers across all fields |
-| **PubMed** | Medical | Biomedical and life sciences |
-| **OpenAlex** | Open Access | 250M+ works, fully open |
-| **CrossRef** | DOIs | 140M+ DOI registrations |
-| **CORE** | Open Access | 200M+ open access papers |
+- **Input Validation** - Minimum 3 character query validation
+- **Tooltips** - Helpful tooltips on all interactive elements
 
 ---
 
@@ -182,7 +165,7 @@ Predicts emerging research trends and provides forecasts for 2026 and beyond.
 
 In the sidebar, you can configure:
 
-- **Max Papers per Source**: 1-20 papers
+- **Max Papers to Fetch**: 1-20 papers
 - **Enable Deep Analysis**: Toggle AI analysis
 - **Enable Literature Review**: Toggle synthesis
 - **Enable Gap Analysis**: Toggle research gap identification
@@ -192,30 +175,39 @@ In the sidebar, you can configure:
 
 ## 📝 Example Usage
 
-1. Enter a research topic: *"transformer architectures for medical imaging"*
-2. Click **⚡ LAUNCH RESEARCH**
+1. Enter a research topic (minimum 3 characters): *"transformer architectures for medical imaging"*
+2. Click **🔬 Search Papers**
 3. Watch as agents collect and analyze papers
 4. Explore results across tabs:
-   - 📄 **Papers** - Discovered papers with relevance scores
+   - 📄 **Papers** - Discovered papers with metadata
    - 🧠 **Analysis** - Deep AI analysis of each paper
    - 📚 **Literature** - Synthesized literature review
    - 🔍 **Gaps** - Identified research gaps
    - 📈 **Trends** - Predicted future trends
+   - 🤖 **Agents** - Agent activity status
 
 ---
 
 ## 🛠️ Development
 
-### Running Tests
+### Running the App
 
 ```bash
-python -m pytest tests/
+# Windows
+run.bat
+
+# Linux/Mac
+./run.sh
 ```
 
-### Code Formatting
+### Setup
 
 ```bash
-black app.py gemini3_research_system.py
+# Windows
+setup.bat
+
+# Linux/Mac
+./setup.sh
 ```
 
 ---
@@ -228,16 +220,17 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
-- **Google Gemini Team** - For the amazing Gemini 3 Pro API
+- **OpenRouter** - For the AI API gateway
+- **Groq** - For fast LLM inference
 - **Streamlit** - For the rapid UI development framework
-- **Academic APIs** - arXiv, Semantic Scholar, PubMed, OpenAlex, CrossRef, CORE
+- **arXiv** - For providing open access to research papers
 
 ---
 
 <div align="center">
 
-**Built with ❤️ for the Gemini 3 Hackathon**
+**Built with ❤️ for Research Discovery**
 
-🏆 *Pushing the boundaries of AI-powered research discovery*
+🔬 *AI-powered academic research made simple*
 
 </div>
