@@ -15,12 +15,12 @@ A sophisticated **Multi-Agent AI Research System** that leverages **OpenRouter A
 
 | Feature | Description |
 |---------|-------------|
-| 🤖 **4 Specialized Agents** | DeepAnalyzer, Synthesizer, Critic, and TrendPrediction agents |
-| 📚 **arXiv Integration** | Access to millions of research papers |
-| 🧠 **Deep Analysis** | AI-powered research analysis using OpenRouter API |
-| 🎨 **Modern UI** | Clean, professional interface with responsive design |
-| 📊 **Smart Relevance Scoring** | AI-powered paper filtering and ranking |
-| 🔄 **Real-time Progress** | Live agent status and search progress tracking |
+|  **4 Specialized Agents** | DeepAnalyzer, Synthesizer, Critic, and TrendPrediction agents |
+|  **arXiv Integration** | Access to millions of research papers |
+|  **Deep Analysis** | AI-powered research analysis using OpenRouter API |
+|  **Modern UI** | Clean, professional interface with responsive design |
+|  **Smart Relevance Scoring** | AI-powered paper filtering and ranking |
+|  **Real-time Progress** | Live agent status and search progress tracking |
 
 ---
 
@@ -135,16 +135,16 @@ project/
 
 ## 🤖 Agent Descriptions
 
-### 1. 🧠 DeepAnalyzer Agent
+### 1.  DeepAnalyzer Agent
 Analyzes individual papers deeply using OpenRouter AI for methodology evaluation, contribution assessment, and limitation identification.
 
-### 2. 📚 Synthesizer Agent
+### 2.  Synthesizer Agent
 Generates comprehensive literature reviews by synthesizing findings across all collected papers.
 
-### 3. 🔍 Critic Agent
+### 3.  Critic Agent
 Identifies research gaps, unexplored areas, and potential future research directions.
 
-### 4. 📈 TrendPrediction Agent
+### 4.  TrendPrediction Agent
 Predicts emerging research trends and provides forecasts based on analyzed papers.
 
 ---
@@ -179,12 +179,12 @@ In the sidebar, you can configure:
 2. Click **🔬 Search Papers**
 3. Watch as agents collect and analyze papers
 4. Explore results across tabs:
-   - 📄 **Papers** - Discovered papers with metadata
-   - 🧠 **Analysis** - Deep AI analysis of each paper
-   - 📚 **Literature** - Synthesized literature review
-   - 🔍 **Gaps** - Identified research gaps
-   - 📈 **Trends** - Predicted future trends
-   - 🤖 **Agents** - Agent activity status
+   -  **Papers** - Discovered papers with metadata
+   -  **Analysis** - Deep AI analysis of each paper
+   -  **Literature** - Synthesized literature review
+   -  **Gaps** - Identified research gaps
+   -  **Trends** - Predicted future trends
+   -  **Agents** - Agent activity status
 
 ---
 
@@ -231,8 +231,8 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 - **Project Manager:** Muhammad Fiaz
 - **Full Stack Developer:** Abdul Rehman
-- **AI / ML Engineer:** Muhammad Umar Saad
-- **Pitch / Demo Lead:** Ume Rubab
+- **AI / ML Engineer:** Muhammad Saad Umar
+- **Pitch / Demo Lead:** Umme Rubab
 
 
 <div align="center">
